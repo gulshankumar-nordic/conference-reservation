@@ -20,6 +20,9 @@ class UserPanel extends Component {
         this.titleChange = this.titleChange.bind(this);
         this.contentChange = this.contentChange.bind(this);
     }
+    loginSuccess() {
+        browserHistory.push('/userPanel');
+    }
     getCookie (cname) {
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
@@ -102,7 +105,7 @@ class UserPanel extends Component {
         if(getttingCookies){
             return ( 
                 <div >
-                    <Header/>
+                <Header loggedIn={true}/>
                 <Template />
                 <Container>
                 <Row>

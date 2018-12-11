@@ -62,6 +62,7 @@ export default class Header extends Component {
               <NavItem>
                 <NavLink href="https://buutti.com/buuttilaiset/">Our Team</NavLink>
               </NavItem>
+              
               {logFunctionality}
             </Nav>
           </Collapse>
