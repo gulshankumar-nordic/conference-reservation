@@ -12,10 +12,6 @@ class ConferenceList extends Component {
         this.setState({    posts: this.props.postList})
     }
      render() { 
-        //console.log('in rendering - ' + this.props.postList.length);
-        //console.log(this.props.lengthOfPost)
-        
-      
         return <table>
           {this.props.postList}
           </table>

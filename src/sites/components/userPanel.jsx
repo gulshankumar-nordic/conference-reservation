@@ -46,9 +46,6 @@ class UserPanel extends Component {
             contents:this.state.content
         })
         .then((response) => {
-            //this.setCookie("cookigesForUser",response.data, 100);
-            //window.location.assign("/userPanel");
-            //browserHistory.push("/userPanel")
           console.log(response.data);
           document.getElementById("title").value="";
           document.getElementById("content").value="";
@@ -62,13 +59,10 @@ class UserPanel extends Component {
 
     titleChange(e){
         this.setState({ title: e.target.value });
-        console.log(e.target.value);
-
     }
 
     contentChange(e){
         this.setState({ content: e.target.value });
-        console.log(e.target.value)
     }
 
     
@@ -76,9 +70,7 @@ class UserPanel extends Component {
         axios.get('http://94.237.87.26:3031/posts?user='+this.getCookie("cookigesForUser")      
         )
         .then((response) => {      
-          //console.log(response.data);
           this.setState({posts:response.data})
-          //console.log(this.state.posts);
          
         })
         .catch((error)=> {
@@ -92,67 +84,51 @@ class UserPanel extends Component {
 
     createTable = () => {
         let table = []
-    
-        // Outer loop to create parent
         for (let i = 0; i < this.state.posts.length; i++) {
             console.log(i)
           let children = []
-          //Inner loop to create children
           for (let j = 0; j < 1; j++) {
             children.push(<td key={i+j} style={{paddingLeft:25}}><h2>{this.state.posts[i].title}</h2> 
             <p> {this.state.posts[i].content}</p></td>)
           }
-          //Create the parent and add the children
           table.push(<tr>{children}</tr>)
         }
         return table
       }
    
     render() { 
-        //console.log("get cookies - ", this.getCookie("cookigesForUser"))
         const getttingCookies = this.getCookie("cookigesForUser");
-        console.log(getttingCookies);
         const test = this.createTable();
-        console.log('length from up - '+test.length);
         if(getttingCookies){
             return ( 
                 <div >
                     <Header/>
                 <Template />
-               
                 <Container>
-                
                 <Row>
                   <Col xs="6" style={{paddingTop:25}}>
                   <div style={{backgroundColor:"#FFFFFF66"}}>
-
                  <ConferenceList postList= {test} lengthOfPost={test.length}/>
-                  
                   </div>
                   </Col>
                   <Col xs="6" style={{paddingTop:25}}>
                   <div style={{backgroundColor:"#FFFFFF66"}}>
-                  <Form onClick={this.postSubmit}>                     
-                     
+                      <Form onClick={this.postSubmit}>                     
                             <Col sm={10}>
                                 <h1>Reserve a conference</h1>
                                 <hr></hr>
                             </Col>
-                       
                             <Col sm={10}>
                                 <h3>Location</h3>
                                 <Input type="text" name="title" id="title" onChange={this.titleChange}/>
                             </Col>
-                        
                             <Col sm={12}>
                                 <h3>Conference details</h3>
                                 <Input type="textarea" name="content" id="content" onChange={this.contentChange} />
                             </Col>
-                        
                         <Col sm={{ size: 10, offset: 6 }}>
                             <Button>Varaa</Button>
                         </Col>
-                      
                     </Form>
                     </div>
                   </Col>
@@ -165,12 +141,8 @@ class UserPanel extends Component {
             return (
                 <div>{ browserHistory.push("/")}</div>
             )
-           
         }
-            
         }
-       
-    
 }
  
 export default UserPanel;
